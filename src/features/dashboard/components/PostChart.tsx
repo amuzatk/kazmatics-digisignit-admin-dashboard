@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 interface PostData {
   userId: number;
