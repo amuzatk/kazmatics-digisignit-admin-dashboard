@@ -1,6 +1,7 @@
 // pages/login.tsx
 import { useRouter } from 'next/router';
 import { useUserStore } from '@/store/useUserStore';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Login() {
   const login = useUserStore((state) => state.login);
@@ -13,6 +14,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
+          <ThemeToggle />
       <div className="space-y-4">
         <h1 className="text-xl font-bold">Login as:</h1>
         <button onClick={() => handleLogin('admin')} className="bg-blue-500 text-white px-4 py-2 rounded">Admin</button>

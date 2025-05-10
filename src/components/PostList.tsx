@@ -1,0 +1,100 @@
+// src/components/PostList.tsx
+import { usePosts } from '@/hooks/usePosts';
+import { useUserStore } from '@/store/useUserStore';
+import { useState } from 'react';
+import { Spin, Button, Modal, Input, message } from 'antd';
+import { PostData } from '@/types';
+import { usePostStore } from '@/store/usePostStore';
+import PostCard from '@/cards/PostCard';
+
+interface PostListProps {
+  editable?: boolean; // Admin: true, Editor: false
+}
+
+export default function PostList({ editable = false }: PostListProps) {
+  const { isLoading } = usePosts();
+  const [editingPost, setEditingPost] = useState<PostData | null>(null);
+  const [editedTitle, setEditedTitle] = useState('');
+  const [editedBody, setEditedBody] = useState('');
+//   const role = useUserStore((s) => s.role);
+  usePosts(); // Ensures data is fetched on mount
+  const posts = usePostStore((s) => s.posts);
+  const updatePost = usePostStore((s) => s.updatePost);
+  const deletePost = usePostStore((s) => s.deletePost);
+
+  const handleEdit = (post: PostData) => {
+    setEditingPost(post);
+    setEditedTitle(post.title);
+    setEditedBody(post.body);
+  };
+
+const handleSaveEdit = async () => {
+    if (!editingPost) return;
+    const updatedPost = {
+      ...editingPost,
+      title: editedTitle,
+      body: editedBody,
+    };
+  
+    try {
+      await fetch(`https://jsonplaceholder.typicode.com/posts/${editingPost.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedPost),
+      });
+      updatePost(updatedPost); // <-- reflect on UI
+      message.success('Post updated (mock)');
+      setEditingPost(null);
+    } catch {
+      message.error('Failed to update');
+    }
+  };
+  
+  const handleDelete = async (id: number) => {
+    try {
+      await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        method: 'DELETE',
+      });
+      deletePost(id); // <-- remove from UI
+      message.success('Post deleted (mock)');
+    } catch {
+      message.error('Failed to delete');
+    }
+  };  
+
+  if (isLoading) return <Spin />;
+
+  return (
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+         {posts?.map((post) => (
+      <PostCard
+        key={post.id}
+        post={post}
+        editable={editable}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    ))}
+
+      <Modal
+        open={!!editingPost}
+        title="Edit Post"
+        onCancel={() => setEditingPost(null)}
+        onOk={handleSaveEdit}
+      >
+        <Input
+          className="mb-2"
+          placeholder="Title"
+          value={editedTitle}
+          onChange={(e) => setEditedTitle(e.target.value)}
+        />
+        <Input.TextArea
+          rows={4}
+          placeholder="Body"
+          value={editedBody}
+          onChange={(e) => setEditedBody(e.target.value)}
+        />
+      </Modal>
+    </div>
+  );
+}

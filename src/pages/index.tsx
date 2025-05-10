@@ -1,3 +1,4 @@
+//src/pages/index.tsx
 import { useUserStore } from "@/store/useUserStore";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
