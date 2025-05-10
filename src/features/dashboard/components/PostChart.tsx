@@ -30,7 +30,7 @@ export default function PostsChart() {
       });
   }, []);
 
-  console.log(data,'post data==')
+  // console.log(data,'post data==')
 
   return (
 //     <motion.div
