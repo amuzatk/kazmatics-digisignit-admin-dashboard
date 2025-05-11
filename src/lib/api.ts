@@ -1,4 +1,8 @@
-export async function fetchPosts() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    return res.json();
-  }
+// src/lib/api.ts
+import { PostData } from '@/types';
+import { api } from './axios';
+
+export async function fetchPosts(): Promise<PostData[]> {
+  const res = await api.get<PostData[]>('/posts');
+  return res.data;
+}
