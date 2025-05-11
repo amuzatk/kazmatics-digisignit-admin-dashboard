@@ -1,4 +1,3 @@
-//antd builds with version 2 PostList
 'use client';
 
 import React from 'react';
@@ -7,6 +6,7 @@ import { PostData } from '@/types';
 
 const Card = dynamic(() => import('antd').then(mod => mod.Card), { ssr: false });
 const Button = dynamic(() => import('antd').then(mod => mod.Button), { ssr: false });
+const Popconfirm = dynamic(() => import('antd').then(mod => mod.Popconfirm), { ssr: false });
 
 interface PostCardProps {
   post: PostData;
@@ -24,9 +24,16 @@ const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onD
           <Button type="primary" size="small" onClick={() => onEdit(post)}>
             Edit
           </Button>
-          <Button danger size="small" onClick={() => onDelete(post.id)}>
-            Delete
-          </Button>
+          <Popconfirm
+            title="Are you sure to delete this post?"
+            onConfirm={() => onDelete(post.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button danger size="small">
+              Delete
+            </Button>
+          </Popconfirm>
         </div>
       )}
     </Card>
@@ -34,6 +41,47 @@ const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onD
 };
 
 export default PostCard;
+
+
+
+
+
+// //antd builds with version 2 PostList
+// 'use client';
+
+// import React from 'react';
+// import dynamic from 'next/dynamic';
+// import { PostData } from '@/types';
+
+// const Card = dynamic(() => import('antd').then(mod => mod.Card), { ssr: false });
+// const Button = dynamic(() => import('antd').then(mod => mod.Button), { ssr: false });
+
+// interface PostCardProps {
+//   post: PostData;
+//   editable?: boolean;
+//   onEdit: (post: PostData) => void;
+//   onDelete: (id: number) => void;
+// }
+
+// const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onDelete }) => {
+//   return (
+//     <Card title={post.title} bordered>
+//       <p>{post.body}</p>
+//       {editable && (
+//         <div className="mt-2 flex gap-2">
+//           <Button type="primary" size="small" onClick={() => onEdit(post)}>
+//             Edit
+//           </Button>
+//           <Button danger size="small" onClick={() => onDelete(post.id)}>
+//             Delete
+//           </Button>
+//         </div>
+//       )}
+//     </Card>
+//   );
+// };
+
+// export default PostCard;
 
 
 
