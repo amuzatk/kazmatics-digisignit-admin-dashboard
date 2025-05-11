@@ -1,8 +1,8 @@
 // src/components/PostList.tsx
 import { usePosts } from '@/hooks/usePosts';
-import { useUserStore } from '@/store/useUserStore';
+// import { useUserStore } from '@/store/useUserStore';
 import { useState } from 'react';
-import { Spin, Button, Modal, Input, message } from 'antd';
+import { Spin, Modal, Input, message } from 'antd';
 import { PostData } from '@/types';
 import { usePostStore } from '@/store/usePostStore';
 import PostCard from '@/cards/PostCard';
@@ -62,7 +62,8 @@ const handleSaveEdit = async () => {
     }
   };  
 
-  if (isLoading) return <Spin />;
+  // if (isLoading) return <Spin />;
+  if (isLoading) return <Spin data-testid="spinner" />;
 
   return (
     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -3,9 +3,11 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useMemo } from 'react';
 import { usePosts } from '@/hooks/usePosts';
+import { usePostStore } from '@/store/usePostStore';
 
 export default function PostsChart() {
-  const { data: posts, isLoading, error } = usePosts();
+    const posts = usePostStore((s) => s.posts);
+  const { isLoading, error } = usePosts();
 
   const chartData = useMemo(() => {
     if (!posts) return [];

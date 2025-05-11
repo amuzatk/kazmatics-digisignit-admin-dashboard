@@ -1,40 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+## Admin Dashboard with Role-Based Access Control
+
+
+This is a Next.js + TypeScript admin dashboard project that implements role-based authentication and authorization, data visualization, and responsive UI with session persistence. The app simulates a real-world dashboard scenario with mock JWT-based login, multiple user roles (admin and editor), and different views/permissions based on role.
+
+## ✨ Features
+
+- 🔐 Authentication & Authorization
+
+- Mock JWT-based login
+
+- Role-based routing and UI rendering
+
+- Session persistence using cookies
+
+- 🎨 UI & UX
+
+- Responsive design
+
+- Light/Dark mode toggle
+
+- Protected pages (redirects unauthorized users)
+
+- 📊 Data Visualization
+
+- Integrated charts using Recharts
+
+- Visual summaries of mock API data (e.g., posts, users)
+
+- 🌐 API Integration
+
+- Mock data fetching from JSONPlaceholder
+
+- Type-safe API layer with Axios + TypeScript
+
+- ⚙️ Global State Management
+
+- Uses Zustand for managing user state across the app
+
+- 🧪 Testing
+
+- Unit tests using React Testing Library and Jest
+
+## ✅ Requirements Met
+
+| Requirement                            | Implemented |
+| -------------------------------------- | ----------- |
+| Next.js + TypeScript                   | ✅           |
+| Mock JWT authentication (admin/editor) | ✅           |
+| Role-based routes and UI               | ✅           |
+| Mock REST API (JSONPlaceholder)        | ✅           |
+| Charting with Recharts                 | ✅           |
+| Global state (Zustand)                 | ✅           |
+| Session via cookies                    | ✅           |
+| Responsive UI with light/dark mode     | ✅           |
+| Unit testing with RTL                  | ✅           |
+| Type-safe API layer                    | ✅           |
+
 
 ## Getting Started
+1. Install dependencies
 
-First, run the development server:
+```bash
+npm install
+# or
+yarn
+
+```
+
+2. Run development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Visit http://localhost:3000 to view the app.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+4. 🧪 Running Tests
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm run test
+# or
+yarn test
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```
+5. 📂 Folder Structure
+/components        → Reusable UI components  
+/lib               → Auth utilities, API functions  
+/pages             → Next.js pages (protected routes inside /admin & /editor)  
+/store             → Zustand store for global state  
+/styles            → TailwindCSS or SCSS (based on setup)  
+__tests__             → Unit tests 
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. 🌍 API
 
-## Learn More
+This app fetches data from:
 
-To learn more about Next.js, take a look at the following resources:
+https://jsonplaceholder.typicode.com/posts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 📦 Deployment
+This project is ready to be deployed on Vercel. Simply push to GitHub and import your repo to Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 🙌 Contributing
+Feel free to fork the project and submit a pull request. Issues and suggestions are welcome!
