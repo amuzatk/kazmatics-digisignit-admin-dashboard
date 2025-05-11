@@ -19,6 +19,8 @@ export function withAuth<P extends JSX.IntrinsicAttributes>(
       }
     }, [isAuthenticated, role, router]);
 
+    if (typeof window === 'undefined') return null; // Prevent SSR crash
+
     if (!isAuthenticated || !role || !allowedRoles.includes(role)) return null;
 
     return <Component {...props} />;
