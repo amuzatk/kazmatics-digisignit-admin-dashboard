@@ -42,9 +42,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </button>
       </aside>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Navbar */}
         <header className="flex justify-between items-center p-4 border-b border-gray-300">
           <button className="lg:hidden p-2" onClick={toggleSidebar}>
             {isSidebarOpen ? (
@@ -57,7 +55,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           <ThemeToggle />
         </header>
 
-        {/* Page content */}
         <main className="flex-1 p-6 overflow-y-auto">{children}</main>
       </div>
     </div>

@@ -4,6 +4,8 @@ import { usePostStore } from "@/store/usePostStore";
 import "@testing-library/jest-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { JSX } from "react";
+import { act } from "react";
+
 
 jest.mock("antd", () => {
   const actualAntd = jest.requireActual("antd");
@@ -64,22 +66,25 @@ describe("PostList", () => {
     );
   };
 
-  it("displays loading state", async () => {
-    (usePostStore as unknown as jest.Mock).mockImplementation((selector) =>
-      selector({
-        posts: [],
-        deletePost: jest.fn(),
-        setPosts: jest.fn(),
-        updatePost: jest.fn(),
-        isLoading: true,
-        setIsLoading: jest.fn(),
-      })
-    );
 
+it("displays loading state", async () => {
+  (usePostStore as unknown as jest.Mock).mockImplementation((selector) =>
+    selector({
+      posts: [],
+      deletePost: jest.fn(),
+      setPosts: jest.fn(),
+      updatePost: jest.fn(),
+      isLoading: true,
+      setIsLoading: jest.fn(),
+    })
+  );
+
+  await act(async () => {
     renderWithClient(<PostList editable={true} />);
+  });
 
-    await waitFor(() => {
-      expect(document.querySelector(".ant-spin")).toBeInTheDocument();
-    });
-  }, 10000);
+  await waitFor(() => {
+    expect(document.querySelector(".ant-spin")).toBeInTheDocument();
+  });
+}, 10000);
 });
