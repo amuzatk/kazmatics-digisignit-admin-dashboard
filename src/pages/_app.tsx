@@ -7,8 +7,9 @@ import { useUserStore } from "@/store/useUserStore";
 // import { useThemeStore } from "@/store/useThemeStore";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Provider } from "@/ThemeProvider";
+// import { Provider } from "@/ThemeProvider";
 import { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from "@/components/Theme-Provider";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -32,14 +33,23 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <div suppressHydrationWarning={true}>    <Provider>
+    <html lang="en" suppressHydrationWarning>
+    <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+    {/* // <div suppressHydrationWarning={true}>    <Provider> */}
     <QueryClientProvider client={queryClient}>
 
       {getLayout(<Component {...pageProps} />)}
       <ReactQueryDevtools initialIsOpen={false} />
       <Toaster position="top-right" />
     </QueryClientProvider>
-      </Provider>  </div>
+      {/* // </Provider>  </div> */}
+      </ThemeProvider>
+      </html>
 
   );
 }

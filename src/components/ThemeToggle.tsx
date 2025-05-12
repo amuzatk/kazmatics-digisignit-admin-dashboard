@@ -1,17 +1,14 @@
-// import { useThemeStore } from '@/store/useThemeStore';
-// import { Sun, Moon } from 'lucide-react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import {useTheme} from 'next-themes';
 export const ThemeToggle = () => {
-  // const { theme, toggleTheme } = useThemeStore();
   const [mounted, setMounted] = useState(false);
   const {setTheme, resolvedTheme } = useTheme();
 
   useEffect(()=>setMounted(true), []);
 
   if(!mounted){
-    return 'KAZMATICS'
+    return null
   }
 if(resolvedTheme === 'dark' ){
   return   <FiSun onClick={()=>setTheme('light')} className="h-5 w-5 text-yellow-400" />
