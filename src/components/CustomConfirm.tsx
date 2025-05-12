@@ -1,16 +1,16 @@
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
 const ConfirmDelete = async (onConfirm: () => void) => {
   const result = await MySwal.fire({
-    title: 'Are you sure?',
+    title: "Are you sure?",
     text: "You can't undo this!",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'Cancel',
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "Cancel",
   });
 
   if (result.isConfirmed) {
