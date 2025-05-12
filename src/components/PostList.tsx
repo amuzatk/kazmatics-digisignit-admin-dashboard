@@ -36,6 +36,7 @@ export default function PostList({ editable = false }: PostListProps) {
   const [editedBody, setEditedBody] = useState("");
 
   const handleEdit = (post: PostData) => {
+    console.log("Editing post:====", post);
     setEditingPost(post);
     setEditedTitle(post.title);
     setEditedBody(post.body);
