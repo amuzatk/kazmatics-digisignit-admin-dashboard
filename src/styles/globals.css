@@ -25,6 +25,8 @@ body {
 
 
 @import "tailwindcss";
+/* @import 'antd/dist/reset.css'; */
+
 
 :root {
   --background: #ffffff;

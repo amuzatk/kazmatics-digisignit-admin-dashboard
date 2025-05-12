@@ -3,10 +3,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { PostData } from '@/types';
+import ConfirmDelete from '@/components/CustomConfirm';
 
 const Card = dynamic(() => import('antd').then(mod => mod.Card), { ssr: false });
 const Button = dynamic(() => import('antd').then(mod => mod.Button), { ssr: false });
-const Popconfirm = dynamic(() => import('antd').then(mod => mod.Popconfirm), { ssr: false });
+// const Popconfirm = dynamic(() => import('antd').then(mod => mod.Popconfirm), { ssr: false });
 
 interface PostCardProps {
   post: PostData;
@@ -24,7 +25,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onD
           <Button type="primary" size="small" onClick={() => onEdit(post)}>
             Edit
           </Button>
-          <Popconfirm
+          {/* <Popconfirm
             title="Are you sure to delete this post?"
             onConfirm={() => onDelete(post.id)}
             okText="Yes"
@@ -33,7 +34,10 @@ const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onD
             <Button danger size="small">
               Delete
             </Button>
-          </Popconfirm>
+          </Popconfirm> */}
+          <Button danger size="small" onClick={() => ConfirmDelete(() => onDelete(post.id))}>
+  Delete
+</Button>
         </div>
       )}
     </Card>
@@ -43,6 +47,75 @@ const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onD
 export default PostCard;
 
 
+
+////failed build toast
+// 'use client';
+
+// import React, { useState } from 'react';
+// import { Card, Button } from 'antd';
+// import { PostData } from '@/types';
+
+// interface PostCardProps {
+//   post: PostData;
+//   editable?: boolean;
+//   onEdit: (post: PostData) => void;
+//   onDelete: (id: number) => Promise<void> | void;
+// }
+
+// const PostCard: React.FC<PostCardProps> = ({ post, editable = false, onEdit, onDelete }) => {
+//   const [isConfirming, setIsConfirming] = useState(false);
+//   const [isDeleting, setIsDeleting] = useState(false);
+
+//   const handleDelete = async () => {
+//     try {
+//       setIsDeleting(true);
+//       await onDelete(post.id); // Await if onDelete is async
+//     } finally {
+//       setIsDeleting(false);
+//       setIsConfirming(false);
+//     }
+//   };
+
+//   return (
+//     <Card title={post.title}>
+//       <p>{post.body}</p>
+//       {editable && (
+//         <div className="mt-2 flex gap-2">
+//           <Button type="primary" size="small" onClick={() => onEdit(post)}>
+//             Edit
+//           </Button>
+
+//           {isConfirming ? (
+//             <>
+//               <span>Are you sure?</span>
+//               <Button
+//                 size="small"
+//                 danger
+//                 loading={isDeleting}
+//                 onClick={handleDelete}
+//               >
+//                 Yes
+//               </Button>
+//               <Button
+//                 size="small"
+//                 disabled={isDeleting}
+//                 onClick={() => setIsConfirming(false)}
+//               >
+//                 No
+//               </Button>
+//             </>
+//           ) : (
+//             <Button danger size="small" onClick={() => setIsConfirming(true)}>
+//               Delete
+//             </Button>
+//           )}
+//         </div>
+//       )}
+//     </Card>
+//   );
+// };
+
+// export default PostCard;
 
 
 
