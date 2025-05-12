@@ -4,22 +4,6 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* body {
-  background-color: red;
-  color: yellow;
-} */
-
-/* html.dark {
-  --background-color: #ce1fce;
-  --text-color: white;
-} */
-
-/* html.light {
-  --background-color: rgb(143, 20, 20);
-  --text-color: rgb(197, 133, 133);
-} */
-
-
 input:-webkit-autofill {
   background-color: transparent !important;
   -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;

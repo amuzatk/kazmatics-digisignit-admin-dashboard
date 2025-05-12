@@ -1,17 +1,14 @@
-// __test__/lib/withAuth.test.tsx
 import { render, screen } from '@testing-library/react';
 import { withAuth } from '@/lib/withAuth';
 import { useUserStore } from '@/store/useUserStore';
 import '@testing-library/jest-dom';
 
-// Mocking next/router
 jest.mock('next/router', () => ({
   useRouter: () => ({
     replace: jest.fn(),
   }),
 }));
 
-// Mocking useUserStore
 jest.mock('@/store/useUserStore', () => ({
   useUserStore: jest.fn(),
 }));
@@ -44,70 +41,3 @@ describe('withAuth HOC', () => {
     expect(screen.queryByText('Authenticated')).not.toBeInTheDocument();
   });
 });
-
-
-
-
-
-// // __test__/lib/withAuth.test.tsx
-// import { render, screen } from '@testing-library/react';
-// import { withAuth } from '@/lib/withAuth';
-// import { useUserStore } from '@/store/useUserStore';
-// import '@testing-library/jest-dom';
-
-// // Mocking next/router
-// jest.mock('next/router', () => ({
-//   useRouter: () => ({
-//     replace: jest.fn(), // mock router.replace
-//   }),
-// }));
-
-// // Mocking useUserStore
-// jest.mock('@/store/useUserStore', () => ({
-//   useUserStore: jest.fn(),
-// }));
-
-// describe('withAuth HOC', () => {
-//   it('redirects unauthenticated users to login', async () => {
-//     (useUserStore as unknown as jest.Mock).mockReturnValue({ isAuthenticated: false, role: '' });
-
-//     const AuthComponent = withAuth(() => <div>Authenticated</div>, ['admin']);
-
-//     render(<AuthComponent />);
-
-//     // Since the component returns `null` during redirection, just check nothing is rendered
-//     expect(screen.queryByText('Authenticated')).not.toBeInTheDocument();
-//   });
-
-//   it('renders component for users with valid roles', async () => {
-//     (useUserStore as unknown as jest.Mock).mockReturnValue({ isAuthenticated: true, role: 'admin' });
-
-//     const AuthComponent = withAuth(() => <div>Authenticated</div>, ['admin']);
-
-//     render(<AuthComponent />);
-
-//     expect(await screen.findByText('Authenticated')).toBeInTheDocument();
-//   });
-
-//   it('redirects authenticated users with invalid roles to login', async () => {
-//     (useUserStore as unknown as jest.Mock).mockReturnValue({ isAuthenticated: true, role: 'viewer' });
-  
-//     const AuthComponent = withAuth(() => <div>Authenticated</div>, ['admin']);
-  
-//     render(<AuthComponent />);
-  
-//     // Since role is not allowed, it should redirect (null render)
-//     expect(screen.queryByText('Authenticated')).not.toBeInTheDocument();
-//   });
-
-//   it('redirects authenticated users with missing role to login', async () => {
-//     (useUserStore as unknown as jest.Mock).mockReturnValue({ isAuthenticated: true, role: '' });
-  
-//     const AuthComponent = withAuth(() => <div>Authenticated</div>, ['admin']);
-  
-//     render(<AuthComponent />);
-  
-//     expect(screen.queryByText('Authenticated')).not.toBeInTheDocument();
-//   });
-  
-// });

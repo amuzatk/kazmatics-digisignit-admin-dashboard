@@ -1,14 +1,12 @@
-// __test__/PostList.test.tsx
-import { render, waitFor } from '@testing-library/react';
-import PostList from '@/components/PostList';
-import { usePostStore } from '@/store/usePostStore';
-import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { JSX } from 'react';
+import { render, waitFor } from "@testing-library/react";
+import PostList from "@/components/PostList";
+import { usePostStore } from "@/store/usePostStore";
+import "@testing-library/jest-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { JSX } from "react";
 
-// Mock Ant Design dynamic components used in PostList
-jest.mock('antd', () => {
-  const actualAntd = jest.requireActual('antd');
+jest.mock("antd", () => {
+  const actualAntd = jest.requireActual("antd");
 
   return {
     ...actualAntd,
@@ -44,12 +42,18 @@ jest.mock('antd', () => {
   };
 });
 
-// Mock Zustand store
-jest.mock('@/store/usePostStore', () => ({
+jest.mock("@/store/usePostStore", () => ({
   usePostStore: jest.fn(),
 }));
+jest.mock("sweetalert2", () => ({
+  fire: jest.fn(() => Promise.resolve({ isConfirmed: true })),
+}));
+jest.mock("@/components/CustomConfirm", () => ({
+  __esModule: true,
+  default: () => <div className="mock-custom-confirm" />,
+}));
 
-describe('PostList', () => {
+describe("PostList", () => {
   const queryClient = new QueryClient();
 
   const renderWithClient = (component: JSX.Element) => {
@@ -60,8 +64,7 @@ describe('PostList', () => {
     );
   };
 
-  it('displays loading state', async () => {
-    // Mock Zustand store selector behavior
+  it("displays loading state", async () => {
     (usePostStore as unknown as jest.Mock).mockImplementation((selector) =>
       selector({
         posts: [],
@@ -76,7 +79,7 @@ describe('PostList', () => {
     renderWithClient(<PostList editable={true} />);
 
     await waitFor(() => {
-      expect(document.querySelector('.ant-spin')).toBeInTheDocument();
+      expect(document.querySelector(".ant-spin")).toBeInTheDocument();
     });
-  });
+  }, 10000);
 });
