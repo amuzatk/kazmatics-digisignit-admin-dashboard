@@ -1,14 +1,21 @@
-import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
- export const ConfirmDelete = (onConfirm: () => void) => {
-  toast(
-    (t) => (
-      <span>
-        Are you sure?
-        <button onClick={() => { toast.dismiss(t.id); onConfirm(); }}>Yes</button>
-        <button onClick={() => toast.dismiss(t.id)}>No</button>
-      </span>
-    ),
-    { duration: 4000 }
-  );
+const MySwal = withReactContent(Swal);
+
+const ConfirmDelete = async (onConfirm: () => void) => {
+  const result = await MySwal.fire({
+    title: 'Are you sure?',
+    text: "You can't undo this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
+  });
+
+  if (result.isConfirmed) {
+    onConfirm();
+  }
 };
+
+export default ConfirmDelete;
