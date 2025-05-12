@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <aside
         className={`fixed mt-[69px] lg:mt-0 inset-0 bg-gray-100 dark:bg-gray-400 dark:text-white text-black p-4 space-y-2 transition-transform transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:static lg:translate-x-0 w-[25%] lg:w-64 z-10`}
+        } lg:static lg:translate-x-0 w-60 lg:w-64 z-10`}
       >
         <h2 className="text-xl font-bold mb-4">Dashboard</h2>
         {role === 'admin' && <Link href="/admin">Admin Posts</Link>}
