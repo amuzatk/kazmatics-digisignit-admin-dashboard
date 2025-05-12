@@ -1,3 +1,4 @@
+//pages/_app.tsx
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import type { NextPage } from "next";
@@ -28,7 +29,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    // <html lang="en" suppressHydrationWarning>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -41,6 +42,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <Toaster position="top-right" />
         </QueryClientProvider>
       </ThemeProvider>
-    </html>
+    // </html>
   );
 }
