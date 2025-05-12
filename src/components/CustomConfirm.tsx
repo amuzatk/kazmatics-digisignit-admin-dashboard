@@ -14,7 +14,7 @@ const ConfirmDelete = async (onConfirm: () => void) => {
   });
 
   if (result.isConfirmed) {
-    onConfirm();
+    onConfirm(); // Proceed with the deletion when confirmed
   }
 };
 

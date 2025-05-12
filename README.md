@@ -5,7 +5,7 @@ This is a Next.js + TypeScript admin dashboard project that implements role-base
 
 ## ✨ Features
 
-- 🔐 Authentication & Authorization
+🔐 Authentication & Authorization
 
 - Mock JWT-based login
 
@@ -13,7 +13,7 @@ This is a Next.js + TypeScript admin dashboard project that implements role-base
 
 - Session persistence using cookies
 
-- 🎨 UI & UX
+🎨 UI & UX
 
 - Responsive design
 
@@ -21,23 +21,23 @@ This is a Next.js + TypeScript admin dashboard project that implements role-base
 
 - Protected pages (redirects unauthorized users)
 
-- 📊 Data Visualization
+📊 Data Visualization
 
 - Integrated charts using Recharts
 
 - Visual summaries of mock API data (e.g., posts, users)
 
-- 🌐 API Integration
+🌐 API Integration
 
 - Mock data fetching from JSONPlaceholder
 
 - Type-safe API layer with Axios + TypeScript
 
-- ⚙️ Global State Management
+⚙️ Global State Management
 
 - Uses Zustand for managing user state across the app
 
-- 🧪 Testing
+🧪 Testing
 
 - Unit tests using React Testing Library and Jest
 
@@ -101,7 +101,9 @@ This app fetches data from:
 https://jsonplaceholder.typicode.com/posts
 
 ## 📦 Deployment
-This project is ready to be deployed on Vercel. Simply push to GitHub and import your repo to Vercel.
+This project is deployed on Vercel.
+
+https://kazmatics-digisignit-admin-dashboard.vercel.app/
 
 ## 🙌 Contributing
 Feel free to fork the project and submit a pull request. Issues and suggestions are welcome!
