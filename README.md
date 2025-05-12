@@ -103,7 +103,7 @@ https://jsonplaceholder.typicode.com/posts
 ## 📦 Deployment
 This project is deployed on Vercel.
 
-https://kazmatics-digisignit-admin-dashboard-mzb43zpwz.vercel.app/login
+https://kazmatics-digisignit-admin-dashboa-git-f8e0ac-amuzatks-projects.vercel.app/login
 
 ## 🙌 Contributing
 Feel free to fork the project and submit a pull request. Issues and suggestions are welcome!
